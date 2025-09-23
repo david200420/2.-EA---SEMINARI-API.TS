@@ -1,6 +1,8 @@
 import express from 'express';
 import mongoose from "mongoose";
 import cors from 'cors'; 
+import usuarioRoutes from './routes/usuarioRoutes'; // Ensure this path is correct
+import swaggerUi from 'swagger-ui-express';
 
 
 const app = express();
@@ -8,7 +10,8 @@ const PORT = 3000;
 
 //////////////////////AQUI APLICAMOS LAS VARIABLES PARA EL MIDDLE WARE CORS//////////////////////
 app.use(cors());
-app.use(express.json());
+app.use(express.json() as express.RequestHandler); 
+app.use("api-docs", swaggerUi.serve, swaggerUi.setup());
 
 //////////////////////AQUI CONECTAMOS A LA BASE DE DATOS//////////////////////
 mongoose.connect('mongodb://localhost:27017/BBDD')
@@ -23,4 +26,6 @@ mongoose.connect('mongodb://localhost:27017/BBDD')
     });
 
 //////////FALTAN PONER LAS RUTAS: ALGO TIPO app.routes()//////////////////////
+app.use('/api/usuarios', usuarioRoutes);
+
 

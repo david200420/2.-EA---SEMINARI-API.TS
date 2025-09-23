@@ -21,7 +21,7 @@ const usuarioSchema = new Schema<IUsuario>({
     password: { type: String, required: true },
     birthday: { type: Date, required: true },
 }, {
-    timestamps: true,
+    timestamps: false,
     versionKey: false
 });
 //encriptar la contraseña antes de guardarla en la base de datos

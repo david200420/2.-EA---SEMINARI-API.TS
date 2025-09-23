@@ -38,7 +38,7 @@ export async function getAllUsers(req: Request, res: Response): Promise<Response
 export async function getUserById(req: Request, res: Response): Promise<Response> {
   console.log('obtener usuario por id');
   try {
-    const { id } = req.params;
+    const { id } = req.body;
     const user = await userService.getUserById(id);
     if (!user) {
       return res.status(404).json({ message: 'USUARIO NO ENCONTRADO' });
@@ -50,9 +50,9 @@ export async function getUserById(req: Request, res: Response): Promise<Response
 }
 
 export async function getUserByUsername(req: Request, res: Response): Promise<Response> {
- console.log('obtener usuario por username');
-    try {
-    const { username } = req.params;
+  console.log('obtener usuario por username');
+  try {
+    const { username } = req.body;
     const user = await userService.getUserByUsername(username);
     if (!user) {
       return res.status(404).json({ message: 'USUARIO NO ENCONTRADO' });
@@ -97,9 +97,9 @@ export async function updateUserByUsername(req: Request, res: Response): Promise
 
 
 export async function deleteUserById(req: Request, res: Response): Promise<Response> {
-    console.log('eliminar usuario por id');
+  console.log('eliminar usuario por id');
   try {
-    const { id } = req.params;
+    const { id } = req.body;
     const deletedUser = await userService.deleteUserById(id);
     if (!deletedUser) {
       return res.status(404).json({ message: 'USUARIO NO ENCONTRADO' });
@@ -113,7 +113,7 @@ export async function deleteUserById(req: Request, res: Response): Promise<Respo
 
 export async function deleteUserByUsername(req: Request, res: Response): Promise<Response> {
   try {
-    const { username } = req.params;
+    const { username } = req.body;
     const deletedUser = await userService.deleteUserByUsername(username);
     if (!deletedUser) {
       return res.status(404).json({ message: 'USUARIO NO ENCONTRADO' });
