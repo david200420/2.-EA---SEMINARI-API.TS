@@ -16,10 +16,8 @@ export async function createUser(req: Request, res: Response): Promise<Response>
     const newUser: Partial<IUsuario> = { username, gmail, password, birthday };
     const user = await userService.createUser(newUser);
 
-    return res.status(201).json({
-      message: 'USUARIO CREADO CON EXITO',
-      user
-    });
+    // devolvemos exactamente lo que guarda MongoDB
+    return res.status(201).json(user);
   } catch (error) {
     return res.status(500).json({ error: 'FALLO AL CREAR EL USUARIO' });
   }
@@ -29,7 +27,7 @@ export async function getAllUsers(req: Request, res: Response): Promise<Response
   console.log('obtener todos los usuarios');
   try {
     const users = await userService.getAllUsers();
-    return res.status(200).json(users);
+    return res.status(200).json(users); // devuelve array de documentos
   } catch (error) {
     return res.status(404).json({ message: (error as Error).message });
   }
@@ -38,12 +36,12 @@ export async function getAllUsers(req: Request, res: Response): Promise<Response
 export async function getUserById(req: Request, res: Response): Promise<Response> {
   console.log('obtener usuario por id');
   try {
-    const { id } = req.body;
+    const { id } = req.params;
     const user = await userService.getUserById(id);
     if (!user) {
       return res.status(404).json({ message: 'USUARIO NO ENCONTRADO' });
     }
-    return res.status(200).json(user);
+    return res.status(200).json(user); // devuelve documento exacto
   } catch (error) {
     return res.status(400).json({ message: (error as Error).message });
   }
@@ -52,7 +50,7 @@ export async function getUserById(req: Request, res: Response): Promise<Response
 export async function getUserByUsername(req: Request, res: Response): Promise<Response> {
   console.log('obtener usuario por username');
   try {
-    const { username } = req.body;
+    const { username } = req.params;
     const user = await userService.getUserByUsername(username);
     if (!user) {
       return res.status(404).json({ message: 'USUARIO NO ENCONTRADO' });
@@ -63,26 +61,24 @@ export async function getUserByUsername(req: Request, res: Response): Promise<Re
   }
 }
 
-
 export async function updateUserById(req: Request, res: Response): Promise<Response> {
   console.log('actualizar usuario por id');
-    try {
+  try {
     const { id } = req.params;
     const userData: Partial<IUsuario> = req.body;
     const updatedUser = await userService.updateUserById(id, userData);
     if (!updatedUser) {
       return res.status(404).json({ message: 'USUARIO NO ENCONTRADO' });
     }
-    return res.status(200).json(updatedUser);
+    return res.status(200).json(updatedUser); // devuelve documento actualizado
   } catch (error) {
     return res.status(400).json({ message: (error as Error).message });
   }
 }
 
-
 export async function updateUserByUsername(req: Request, res: Response): Promise<Response> {
   console.log('actualizar usuario por username');
-    try {
+  try {
     const { username } = req.params;
     const userData: Partial<IUsuario> = req.body;
     const updatedUser = await userService.updateUserByUsername(username, userData);
@@ -95,25 +91,24 @@ export async function updateUserByUsername(req: Request, res: Response): Promise
   }
 }
 
-
 export async function deleteUserById(req: Request, res: Response): Promise<Response> {
   console.log('eliminar usuario por id');
   try {
-    const { id } = req.body;
+    const { id } = req.params;
     const deletedUser = await userService.deleteUserById(id);
     if (!deletedUser) {
       return res.status(404).json({ message: 'USUARIO NO ENCONTRADO' });
     }
-    return res.status(200).json(deletedUser);
+    return res.status(200).json(deletedUser); // documento eliminado
   } catch (error) {
     return res.status(400).json({ message: (error as Error).message });
   }
 }
 
-
 export async function deleteUserByUsername(req: Request, res: Response): Promise<Response> {
+  console.log('eliminar usuario por username');
   try {
-    const { username } = req.body;
+    const { username } = req.params;
     const deletedUser = await userService.deleteUserByUsername(username);
     if (!deletedUser) {
       return res.status(404).json({ message: 'USUARIO NO ENCONTRADO' });
