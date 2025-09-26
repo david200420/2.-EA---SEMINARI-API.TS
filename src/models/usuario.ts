@@ -17,14 +17,14 @@ export interface IUsuario {
 const usuarioSchema = new Schema<IUsuario>({
     username: { type: String, required: true, unique: true },
     gmail: { type: String, required: true, unique: true },
-    //pone unique para que no se repita el correo ni el username entre todos los usuarios
+    //pone unique para que no se repita el correo ni el username entre todos los usuarios de la base de datos
     password: { type: String, required: true },
     birthday: { type: Date, required: true },
 }, {
     timestamps: false,
     versionKey: false
 });
-//encriptar la contraseña antes de guardarla en la base de datos
+//encriptar la contraseña antes de guardarla en la base de datos HOOK DE MONGOOSE
 usuarioSchema.pre<IUsuario>('save', async function (next) {
     if (!this.isModified('password')) return next();
     const salt = await bcrypt.genSalt();    

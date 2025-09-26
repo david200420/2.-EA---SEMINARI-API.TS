@@ -1,0 +1,9 @@
+
+POST    http://localhost:3000/api/user/createUser
+
+GET     http://localhost:3000/api/user/getAllUsers
+GET     http://localhost:3000/api/user/getUserById/:Id
+
+PUT     http://localhost:3000/api/user/updateUserByUsername/:username
+
+DELETE  http://localhost:3000/api/user/deleteUserByUserName/:username

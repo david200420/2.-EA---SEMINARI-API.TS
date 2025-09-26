@@ -26,6 +26,6 @@ mongoose.connect('mongodb://localhost:27017/BBDD')
     });
 
 //////////FALTAN PONER LAS RUTAS: ALGO TIPO app.routes()//////////////////////
-app.use('/api/usuarios', usuarioRoutes);
+app.use('/api/user', usuarioRoutes);
 
 

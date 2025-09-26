@@ -1,15 +1,47 @@
-import { Router } from 'express';
-import * as usuarioController from '../controller/usuarioController';
-
-const router = Router();
-
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const usuarioController = __importStar(require("../controller/usuarioController"));
+const router = (0, express_1.Router)();
 /**
  * @swagger
  * tags:
  *   name: Usuarios
  *   description: Endpoints para gestionar usuarios
  */
-
 /**
  * @swagger
  * components:
@@ -39,7 +71,6 @@ const router = Router();
  *         password: 123456
  *         birthday: 2000-05-21
  */
-
 /**
  * @swagger
  * /user/createUser:
@@ -57,7 +88,6 @@ const router = Router();
  *               $ref: '#/components/schemas/Usuario'
  */
 router.post('/createUser', usuarioController.createUser);
-
 /**
  * @swagger
  * /user/getAllUsers:
@@ -67,13 +97,12 @@ router.post('/createUser', usuarioController.createUser);
  *     responses:
  *       200:
  *         description: Lista de usuarios
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Usuario'
+ * *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Usuario'
  */
 router.get('/getAllUsers', usuarioController.getAllUsers);
-
 /**
  * @swagger
  * /user/getUserById/{id}:
@@ -96,7 +125,6 @@ router.get('/getAllUsers', usuarioController.getAllUsers);
  *               $ref: '#/components/schemas/Usuario'
  */
 router.get('/getUserById/:id', usuarioController.getUserById);
-
 /**
  * @swagger
  * /user/updateUserByUsername/{username}:
@@ -120,10 +148,9 @@ router.get('/getUserById/:id', usuarioController.getUserById);
  *               $ref: '#/components/schemas/Usuario'
  */
 router.put('/updateUserByUsername/:username', usuarioController.updateUserByUsername);
-
 /**
  * @swagger
- * /user/deleteUserByUserName/{username}:
+ * /user/deleteUserByUsername/{username}:
  *   delete:
  *     summary: Eliminar un usuario por nombre
  *     tags: [Usuarios]
@@ -133,6 +160,7 @@ router.put('/updateUserByUsername/:username', usuarioController.updateUserByUser
  *         schema:
  *           type: string
  *         required: true
+ *
  *     responses:
  *       200:
  *         description: Usuario eliminado
@@ -141,6 +169,5 @@ router.put('/updateUserByUsername/:username', usuarioController.updateUserByUser
  *             schema:
  *               $ref: '#/components/schemas/Usuario'
  */
-router.delete('/deleteUserByUserName/:username', usuarioController.deleteUserByUsername);
-
-export default router;
+router.delete('/deleteUserByUsername/:username', usuarioController.deleteUserByUsername);
+exports.default = router;
