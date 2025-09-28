@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import {
   createEvento,
-  getAllevento,
+  getAllEventos,
   getEventoById,
   updateEvento,
   deleteEvento
@@ -18,7 +18,7 @@ export const createEventoHandler = async (req: Request, res: Response) => {
 
 export const getAlleventoHandler = async (_req: Request, res: Response) => {
   try {
-    const data = await getAllevento();
+    const data = await getAllEventos();
     res.json(data);
   } catch (error: any) {
     res.status(500).json({ message: error.message });

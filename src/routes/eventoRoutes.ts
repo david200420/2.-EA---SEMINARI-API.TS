@@ -40,7 +40,7 @@ router.post('/', createEventoHandler);
  *     responses:
  *       200: { description: OK }
  */
-router.get('/', getAllEventosHandler);
+router.get('/', getAlleventoHandler);
 
 /**
  * @swagger
