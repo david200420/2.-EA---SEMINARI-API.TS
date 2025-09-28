@@ -1,9 +1,15 @@
 
 POST    http://localhost:3000/api/user/createUser
+POST    http://localhost:3000/api/evento
 
 GET     http://localhost:3000/api/user/getAllUsers
+GET     http://localhost:3000/api/evento //GetAllEventos
+
 GET     http://localhost:3000/api/user/getUserById/:Id
+GET     http://localhost:3000/api/evento/:Id
 
 PUT     http://localhost:3000/api/user/updateUserByUsername/:username
+PUT     http://localhost:3000/api/evento/:Id
 
 DELETE  http://localhost:3000/api/user/deleteUserByUserName/:username
+DELETE  http://localhost:3000/api/evento/:Id
