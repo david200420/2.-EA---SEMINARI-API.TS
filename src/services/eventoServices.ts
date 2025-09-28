@@ -1,9 +1,5 @@
 import Evento, { IEvento } from '../models/evento';
 
-export const saveMethod = () => {
-  return 'Hola'; // endpoint de bienvenida / comprobación
-};
-
 export const createEvento = async (data: IEvento) => {
   const ev = new Evento(data);
   return await ev.save();

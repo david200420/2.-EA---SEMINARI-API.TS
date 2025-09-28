@@ -1,21 +1,11 @@
 import { Request, Response } from 'express';
 import {
-  saveMethod,
   createEvento,
   getAllEventos,
   getEventoById,
   updateEvento,
   deleteEvento
 } from '../services/eventoServices';
-
-export const saveMethodHandler = async (_req: Request, res: Response) => {
-  try {
-    const data = saveMethod();
-    res.json(data);
-  } catch (error: any) {
-    res.status(500).json({ message: error.message });
-  }
-};
 
 export const createEventoHandler = async (req: Request, res: Response) => {
   try {
