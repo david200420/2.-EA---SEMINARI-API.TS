@@ -19,4 +19,8 @@ const options: swaggerJSDoc.Options = {
 
 const swaggerSpec = swaggerJSDoc(options);
 
+<<<<<<< HEAD
 export default swaggerSpec;
+=======
+export default swaggerSpec;
+>>>>>>> feature-evento

@@ -1,9 +1,16 @@
 import express from 'express';
 import mongoose from "mongoose";
 import cors from 'cors'; 
+<<<<<<< HEAD
 import usuarioRoutes from './routes/usuarioRoutes'; 
 import swaggerUi from 'swagger-ui-express';
 import swaggerSpec from './config/swagger';
+=======
+import eventoRoutes from './routes/eventoRoutes';
+import swaggerUi from 'swagger-ui-express';
+import swaggerSpec from './config/swagger';
+
+>>>>>>> feature-evento
 
 const app = express();
 const PORT = 3000;
@@ -12,6 +19,10 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json() as express.RequestHandler); 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+<<<<<<< HEAD
+=======
+
+>>>>>>> feature-evento
 
 //////////////////////AQUI CONECTAMOS A LA BASE DE DATOS//////////////////////
 mongoose.connect('mongodb://localhost:27017/BBDD')
@@ -26,6 +37,10 @@ mongoose.connect('mongodb://localhost:27017/BBDD')
     });
 
 //////////FALTAN PONER LAS RUTAS: ALGO TIPO app.routes()//////////////////////
+<<<<<<< HEAD
 app.use('/api/user', usuarioRoutes);
 
 
+=======
+app.use('/api/eventos', eventoRoutes);
+>>>>>>> feature-evento
