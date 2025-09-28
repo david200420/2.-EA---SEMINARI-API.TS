@@ -1,7 +1,7 @@
 import express from 'express';
 import {
   createEventoHandler,
-  getAllEventosHandler,
+  getAlleventoHandler,
   getEventoByIdHandler,
   updateEventoHandler,
   deleteEventoHandler
@@ -11,7 +11,7 @@ const router = express.Router();
 
 /**
  * @swagger
- *  /eventos:
+ *  /evento:
  *   post:
  *     summary: Crea un nuevo evento
  *     tags: [Eventos]
@@ -33,7 +33,7 @@ router.post('/', createEventoHandler);
 
 /**
  * @swagger
- *  /eventos:
+ *  /evento:
  *   get:
  *     summary: Lista todos los eventos
  *     tags: [Eventos]
@@ -44,7 +44,7 @@ router.get('/', getAllEventosHandler);
 
 /**
  * @swagger
- *  /eventos/{id}:
+ *  /evento/{id}:
  *   get:
  *     summary: Obtiene un evento por ID
  *     tags: [Eventos]
@@ -60,8 +60,8 @@ router.get('/', getAllEventosHandler);
 router.get('/:id', getEventoByIdHandler);
 
 /**
- * @swagger
- *  /eventos/{id}:
+ * @swagger   
+ *  /evento/{id}:
  *   put:
  *     summary: Actualiza un evento por ID
  *     tags: [Eventos]
@@ -88,7 +88,7 @@ router.put('/:id', updateEventoHandler);
 
 /**
  * @swagger
- *  /eventos/{id}:
+ *  /evento/{id}:
  *   delete:
  *     summary: Elimina un evento por ID
  *     tags: [Eventos]
