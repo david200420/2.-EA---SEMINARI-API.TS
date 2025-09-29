@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Types } from "mongoose";
 
 const eventoSchema = new mongoose.Schema(
   {
@@ -6,10 +6,11 @@ const eventoSchema = new mongoose.Schema(
     schedule: { type: String, required: true, trim: true }, // p.ej. "16:30 - 17:30"
     address: { type: String, trim: true }                   //(Latitud y Longitud, para usar geojson)
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: false, versionKey: false }
 );
 
 export interface IEvento {
+  _id: Types.ObjectId;
   name: string;
   schedule: string;
   address?: string;

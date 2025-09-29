@@ -5,13 +5,6 @@ const router = Router();
 
 /**
  * @swagger
- * tags:
- *   name: Usuarios
- *   description: Endpoints para gestionar usuarios
- */
-
-/**
- * @swagger
  * components:
  *   schemas:
  *     Usuario:
@@ -41,13 +34,18 @@ const router = Router();
  */
 
 /**
+/**
  * @swagger
- * /user/createUser:
+ * /user/:
  *   post:
  *     summary: Crear un nuevo usuario
  *     tags: [Usuarios]
  *     requestBody:
  *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Usuario'
  *     responses:
  *       201:
  *         description: Usuario creado exitosamente
@@ -56,11 +54,12 @@ const router = Router();
  *             schema:
  *               $ref: '#/components/schemas/Usuario'
  */
-router.post('/createUser', usuarioController.createUser);
+router.post('/', usuarioController.createUser);
+
 
 /**
  * @swagger
- * /user/getAllUsers:
+ * /user/:
  *   get:
  *     summary: Obtener todos los usuarios
  *     tags: [Usuarios]
@@ -72,11 +71,11 @@ router.post('/createUser', usuarioController.createUser);
  *             schema:
  *               $ref: '#/components/schemas/Usuario'
  */
-router.get('/getAllUsers', usuarioController.getAllUsers);
+router.get('/', usuarioController.getAllUsers);
 
 /**
  * @swagger
- * /user/getUserById/{id}:
+ * /user/{id}:
  *   get:
  *     summary: Obtener un usuario por su ID
  *     tags: [Usuarios]
@@ -95,11 +94,12 @@ router.get('/getAllUsers', usuarioController.getAllUsers);
  *             schema:
  *               $ref: '#/components/schemas/Usuario'
  */
-router.get('/getUserById/:id', usuarioController.getUserById);
+router.get('/:id', usuarioController.getUserById);
 
 /**
+/**
  * @swagger
- * /user/updateUserByUsername/{username}:
+ * /user/{username}:
  *   put:
  *     summary: Actualizar un usuario por nombre
  *     tags: [Usuarios]
@@ -111,6 +111,10 @@ router.get('/getUserById/:id', usuarioController.getUserById);
  *         required: true
  *     requestBody:
  *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Usuario'
  *     responses:
  *       200:
  *         description: Usuario actualizado
@@ -119,11 +123,12 @@ router.get('/getUserById/:id', usuarioController.getUserById);
  *             schema:
  *               $ref: '#/components/schemas/Usuario'
  */
-router.put('/updateUserByUsername/:username', usuarioController.updateUserByUsername);
+router.put('/:username', usuarioController.updateUserByUsername);
+
 
 /**
  * @swagger
- * /user/deleteUserByUserName/{username}:
+ * /user/{username}:
  *   delete:
  *     summary: Eliminar un usuario por nombre
  *     tags: [Usuarios]
@@ -141,6 +146,6 @@ router.put('/updateUserByUsername/:username', usuarioController.updateUserByUser
  *             schema:
  *               $ref: '#/components/schemas/Usuario'
  */
-router.delete('/deleteUserByUserName/:username', usuarioController.deleteUserByUsername);
+router.delete('/:username', usuarioController.deleteUserByUsername);
 
 export default router;

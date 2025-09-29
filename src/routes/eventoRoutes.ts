@@ -1,17 +1,12 @@
-import express from 'express';
-import {
-  createEventoHandler,
-  getAlleventoHandler,
-  getEventoByIdHandler,
-  updateEventoHandler,
-  deleteEventoHandler
-} from '../controller/eventoController';
+import { Router } from 'express';
+import * as eventoController from '../controller/eventoController';
 
-const router = express.Router();
+const router = Router();
+
 
 /**
  * @swagger
- *  /evento:
+ * /event:
  *   post:
  *     summary: Crea un nuevo evento
  *     tags: [Eventos]
@@ -21,30 +16,40 @@ const router = express.Router();
  *         application/json:
  *           schema:
  *             type: object
- *             required: [name, schedule]
+ *             required:
+ *               - name
+ *               - schedule
  *             properties:
- *               name: { type: string, example: "Seminario Node" }
- *               schedule: { type: string, example: "16:30 - 17:30" }
- *               address: { type: string, example: "Aula 3, Edificio A" }
+ *               name:
+ *                 type: string
+ *                 example: "Seminario Node"
+ *               schedule:
+ *                 type: string
+ *                 example: "16:30 - 17:30"
+ *               address:
+ *                 type: string
+ *                 example: "Aula 3, Edificio A"
  *     responses:
- *       201: { description: Creado }
+ *       201:
+ *         description: Evento creado exitosamente
  */
-router.post('/', createEventoHandler);
+router.post('/', eventoController.createEventoHandler);
 
 /**
  * @swagger
- *  /evento:
+ * /event:
  *   get:
  *     summary: Lista todos los eventos
  *     tags: [Eventos]
  *     responses:
- *       200: { description: OK }
+ *       200:
+ *         description: OK
  */
-router.get('/', getAlleventoHandler);
+router.get('/', eventoController.getAlleventoHandler);
 
 /**
  * @swagger
- *  /evento/{id}:
+ * /event/{id}:
  *   get:
  *     summary: Obtiene un evento por ID
  *     tags: [Eventos]
@@ -52,16 +57,19 @@ router.get('/', getAlleventoHandler);
  *       - in: path
  *         name: id
  *         required: true
- *         schema: { type: string }
+ *         schema:
+ *           type: string
  *     responses:
- *       200: { description: OK }
- *       404: { description: No encontrado }
+ *       200:
+ *         description: Evento encontrado
+ *       404:
+ *         description: No encontrado
  */
-router.get('/:id', getEventoByIdHandler);
+router.get('/:id', eventoController.getEventoByIdHandler);
 
 /**
- * @swagger   
- *  /evento/{id}:
+ * @swagger
+ * /event/{id}:
  *   put:
  *     summary: Actualiza un evento por ID
  *     tags: [Eventos]
@@ -69,7 +77,8 @@ router.get('/:id', getEventoByIdHandler);
  *       - in: path
  *         name: id
  *         required: true
- *         schema: { type: string }
+ *         schema:
+ *           type: string
  *     requestBody:
  *       required: true
  *       content:
@@ -77,18 +86,23 @@ router.get('/:id', getEventoByIdHandler);
  *           schema:
  *             type: object
  *             properties:
- *               name: { type: string }
- *               schedule: { type: string }
- *               address: { type: string }
+ *               name:
+ *                 type: string
+ *               schedule:
+ *                 type: string
+ *               address:
+ *                 type: string
  *     responses:
- *       200: { description: Actualizado }
- *       404: { description: No encontrado }
+ *       200:
+ *         description: Evento actualizado
+ *       404:
+ *         description: No encontrado
  */
-router.put('/:id', updateEventoHandler);
+router.put('/:id', eventoController.updateEventoHandler);
 
 /**
  * @swagger
- *  /evento/{id}:
+ * /event/{id}:
  *   delete:
  *     summary: Elimina un evento por ID
  *     tags: [Eventos]
@@ -96,11 +110,14 @@ router.put('/:id', updateEventoHandler);
  *       - in: path
  *         name: id
  *         required: true
- *         schema: { type: string }
+ *         schema:
+ *           type: string
  *     responses:
- *       200: { description: Eliminado }
- *       404: { description: No encontrado }
+ *       200:
+ *         description: Evento eliminado
+ *       404:
+ *         description: No encontrado
  */
-router.delete('/:id', deleteEventoHandler);
+router.delete('/:id', eventoController.deleteEventoHandler);
 
 export default router;

@@ -24,6 +24,9 @@ const usuarioSchema = new Schema<IUsuario>({
     timestamps: false,
     versionKey: false
 });
+
+
+
 //encriptar la contraseña antes de guardarla en la base de datos HOOK DE MONGOOSE
 usuarioSchema.pre<IUsuario>('save', async function (next) {
     if (!this.isModified('password')) return next();
@@ -33,10 +36,14 @@ usuarioSchema.pre<IUsuario>('save', async function (next) {
     next();
 });
 
+
+
 //método para comparar la contraseña ingresada con la contraseña encriptada en la base de datos
 usuarioSchema.methods.comparePassword = async function (candidatePassword: string): Promise<boolean> {
     return await bcrypt.compare(candidatePassword, this.password);
 };
+
+
 
 //guardamos en una variable exportable el modelo usuario, tiene similitud cuando en DSA llamabamos a una clase(objeto)
 //ya que el funcionamiento es similar.
