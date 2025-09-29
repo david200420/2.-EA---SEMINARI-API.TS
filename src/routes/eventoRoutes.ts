@@ -115,6 +115,16 @@ router.put('/:id', eventoController.updateEventoHandler);
  *     responses:
  *       200:
  *         description: Evento eliminado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 deletedEvento:
+ *                   type: object
+ *                   description: Datos del evento eliminado
  *       404:
  *         description: No encontrado
  */
