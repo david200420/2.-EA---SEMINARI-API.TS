@@ -203,7 +203,7 @@ router.delete('/:id', eventoController.deleteEventoHandler);
  * /event/{eventoId}/user/{usuarioId}:
  *   post:
  *     summary: Añade un usuario a un evento
- *     tags:
+ *     tags:    
  *       - Eventos
  *     parameters:
  *       - in: path

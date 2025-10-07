@@ -4,7 +4,10 @@ import {
   getAllEventos,
   getEventoById,
   updateEvento,
-  deleteEvento
+  deleteEvento,
+  addUsuarioToEvento,
+  removeUsuarioFromEvento,
+  getUsuariosbyEvento
 } from '../services/eventoServices';
 
 export const createEventoHandler = async (req: Request, res: Response) => {
@@ -51,3 +54,33 @@ export const deleteEventoHandler = async (req: Request, res: Response) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const addUsuarioToEventoHandler = async (req: Request, res: Response) => {
+  try {
+    const { eventoId, usuarioId } = req.params;
+    const data = await addUsuarioToEvento(eventoId, usuarioId);
+    res.json(data);
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const removeUsuarioFromEventoHandler = async (req: Request, res: Response) => {
+  try {
+    const { eventoId, usuarioId } = req.params;
+    const data = await removeUsuarioFromEvento(eventoId, usuarioId);
+    res.json(data);
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
+};
+export const getUsuariosbyEventoHandler = async (req: Request, res: Response) => {
+  try {
+    const { eventoId } = req.params;
+    const data = await getUsuariosbyEvento(eventoId);
+    res.json(data);
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
